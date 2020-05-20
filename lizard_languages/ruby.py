@@ -19,7 +19,7 @@ class MyToken(str):
 class RubyReader(RubylikeReader):
     # pylint: disable=R0903
 
-    ext = ['rb']
+    ext = ['rb', 'rake']
     language_names = ['ruby']
 
     @staticmethod

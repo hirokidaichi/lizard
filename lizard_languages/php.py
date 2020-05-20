@@ -11,7 +11,7 @@ from .js_style_language_states import JavaScriptStyleLanguageStates
 class PHPReader(CodeReader, CCppCommentsMixin):
     # pylint: disable=R0903
 
-    ext = ['php']
+    ext = ['php', 'inc']
     language_names = ['php']
     _conditions = set(['if', 'elseif', 'for', 'while', '&&', '||', '?',
                        'catch', 'case'])
@@ -22,8 +22,8 @@ class PHPReader(CodeReader, CCppCommentsMixin):
         addition += r"|(?:\<{3}(?P<quote>\w+).*?(?P=quote))"
         current_pos = 0
         code_block_pattern = re.compile(
-                r"\<\?(?:php)?(.*?)(?:(\?\>)|\Z)",
-                re.M | re.S)
+            r"\<\?(?:php)?(.*?)(?:(\?\>)|\Z)",
+            re.M | re.S)
         for match in code_block_pattern.finditer(source_code):
             if source_code[current_pos:match.start()]:
                 yield '"' + source_code[current_pos:match.start()] + '"'
